@@ -21,24 +21,19 @@ class HomeController extends GetxController {
 
   List appBarTitles = [
     'Spaces',
-    //'Social Space',
     'Activity',
     'My Profile'
   ];
 
   List appBarSubTitles = [
     'Manage Spaces',
-    //'Connect',
     'History',
     'Manage profile'
   ];
 
   List screens = [
     const SpacesScreen(),
-    //const SocialScreen(),
     const ActivityScreen(backButton: false,),
     const AccountScreen()
   ];
-
-
 }

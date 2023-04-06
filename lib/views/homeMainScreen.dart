@@ -41,7 +41,8 @@ class _HomeScreenMainState extends State<HomeScreenMain> {
       onWillPop: () => onWillPop(context),
       child: Spinner(
         child: Scaffold(
-          backgroundColor: AppColor.white,
+          backgroundColor: AppColor.tertiaryColor,
+
           body: Obx(
                 () => SafeArea(
               child: hc.screens.elementAt(hc.selectedTab.value),
@@ -50,30 +51,6 @@ class _HomeScreenMainState extends State<HomeScreenMain> {
 
           bottomNavigationBar: const AppBottomNav(),
 
-          // floatingActionButton: Obx(
-          //       () => FloatingActionButton(
-          //     onPressed: () => hc.getOnPressedForFloatingActionButton(context),
-          //
-          //     //TODO
-          //     tooltip: hc.toolTips.elementAt(hc.selectedTab.value),
-          //
-          //     backgroundColor: AppColor.primaryColor,
-          //
-          //     child:  hc.selectedTab.value == 2  ?  Obx(
-          //           () => Icon(
-          //         orderController.isDateFilterApplied.value == true
-          //             ?  Icons.clear
-          //             : Icons.date_range,
-          //         color: AppColor.white,
-          //       ),
-          //     ) :  Icon(hc.floatingActionButtonIcons.elementAt(hc.selectedTab.value),  color: AppColor.white,),
-          //
-          //
-          //   ),
-          // ),
-
-
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         ),
       ),
     );

@@ -8,13 +8,13 @@ Future<bool> onWillPop(BuildContext context) async {
 
 showExitBottomSheet(BuildContext context) async {
   return await showModalBottomSheet(
-    backgroundColor: Colors.transparent,
+    backgroundColor: AppColor.transparent,
     context: context,
     builder: (BuildContext context) {
       return Container(
         padding: const EdgeInsets.all(16),
         decoration: const BoxDecoration(
-          color: Colors.white,
+          color: AppColor.tertiaryColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(24),
             topRight: Radius.circular(24),
@@ -35,7 +35,7 @@ Widget buildBottomSheet(BuildContext context) {
       ),
       const Text(
         'Do you want to exit an App?',
-          style: TextStyle(color: AppColor.blackMild,fontSize: 18)
+          style: TextStyle(color: AppColor.white,fontSize: 18)
       ),
       const SizedBox(
         height: 24,
@@ -52,7 +52,7 @@ Widget buildBottomSheet(BuildContext context) {
               ),
             ),
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('CANCEL',style: TextStyle(color: AppColor.primaryColor)),
+            child: const Text('CANCEL',style: TextStyle(color: AppColor.primaryColor,fontWeight: FontWeight.bold)),
           ),
           TextButton(
             style: ButtonStyle(
@@ -63,7 +63,7 @@ Widget buildBottomSheet(BuildContext context) {
               ),
             ),
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('YES, EXIT',style: TextStyle(color: AppColor.primaryColor),),
+            child: const Text('YES, EXIT',style: TextStyle(color: AppColor.white,fontWeight: FontWeight.bold),),
           ),
         ],
       ),

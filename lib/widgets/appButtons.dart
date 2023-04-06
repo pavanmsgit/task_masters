@@ -29,7 +29,7 @@ class SelectImageButton extends StatelessWidget {
             style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w500,
-              color: AppColor.primaryColor
+              color: AppColor.white
             ),
           ),
           const SizedBox(height: 5),
@@ -97,9 +97,7 @@ class TaskMastersButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onTap,
-
       style: ButtonStyle(
-
         minimumSize: MaterialStateProperty.all(
           Size(0, ScreenSize.height(context) * 0.06),
         ),

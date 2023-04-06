@@ -21,7 +21,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void initState() {
-
     super.initState();
   }
 

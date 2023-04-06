@@ -45,13 +45,22 @@ class TaskController extends GetxController {
   UserData userData = UserData();
 
   var rand = Random();
-  DateTime? taskSelectedTime;
-  RxString taskSelectedTimeString = "".obs;
+  DateTime? taskSelectedStartTime;
+  DateTime? taskSelectedEndTime;
+  RxString taskSelectedStartTimeString = "".obs;
+  RxString taskSelectedEndTimeString = "".obs;
 
-  ///UPDATE SELECTED TIME STRING FROM DATE TIME
-  updateSelectedTimeString() {
-    taskSelectedTimeString?.value = DateFormat('dd-MM-yyyy – kk:mm a')
-        .format(taskController.taskSelectedTime!);
+  ///UPDATE SELECTED START TIME STRING FROM DATE TIME
+  updateSelectedStartTimeString() {
+    taskSelectedStartTimeString?.value = DateFormat('dd-MM-yyyy – kk:mm a')
+        .format(taskController.taskSelectedStartTime!);
+    update();
+  }
+
+  ///UPDATE SELECTED END TIME STRING FROM DATE TIME
+  updateSelectedEndTimeString() {
+    taskSelectedEndTimeString?.value = DateFormat('dd-MM-yyyy – kk:mm a')
+        .format(taskController.taskSelectedEndTime!);
     update();
   }
 
@@ -69,8 +78,11 @@ class TaskController extends GetxController {
     } else if (taskPointsController.text.isEmpty) {
       showToast("Please enter Task Points", ToastGravity.CENTER);
       return;
-    } else if (taskSelectedTimeString!.value.isEmpty) {
-      showToast("Please Select time", ToastGravity.CENTER);
+    } else if (taskSelectedStartTimeString!.value.isEmpty) {
+      showToast("Please Select Start time", ToastGravity.CENTER);
+      return;
+    }else if (taskSelectedEndTimeString!.value.isEmpty) {
+      showToast("Please Select End time", ToastGravity.CENTER);
       return;
     }
 
@@ -86,7 +98,9 @@ class TaskController extends GetxController {
           taskByName: authController.profile!.name,
           taskByEmail: authController.profile!.email,
           taskByImage: authController.profile!.profileImage,
-          taskSelectedTime: taskSelectedTime!);
+          taskSelectedStartTime: taskSelectedStartTime!,
+          taskSelectedEndTime: taskSelectedEndTime!,
+      );
 
       if (res) {
         showToast('Task Created', ToastGravity.BOTTOM);
@@ -104,8 +118,9 @@ class TaskController extends GetxController {
     taskNameController.clear();
     taskDescriptionController.clear();
     taskPointsController.clear();
-    taskSelectedTime = null;
-    taskSelectedTimeString!.value = "";
+    taskSelectedStartTime = null;
+    taskSelectedStartTimeString!.value = "";
+    taskSelectedEndTimeString!.value = "";
     update();
   }
 
@@ -149,8 +164,6 @@ class TaskController extends GetxController {
       var points = task.taskTotalPoints/(spaces.spaceUsers.length-1);
 
       String referenceIdAlt = rand.nextInt(10000).toString() + rand.nextInt(10000).toString();
-
-
 
       ///REMOVES POINTS FOR ALL THE SPACE MEMBERS EXCEPT THE USER WHO COMPLETED THE TASK
       for (String userDocId in spaces.spaceUsers) {

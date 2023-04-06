@@ -44,7 +44,7 @@ class _SocialScreenState extends State<SocialScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: titleAppBar(context: context),
-        backgroundColor: AppColor.white,
+        backgroundColor: AppColor.tertiaryColor,
         body: allSpaceUsers(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {

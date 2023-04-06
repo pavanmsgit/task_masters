@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Spinner(
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: AppColor.white,
+          backgroundColor: AppColor.tertiaryColor,
           body: SafeArea(
             child: SingleChildScrollView(
               child: Padding(
@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       ///APP LOGO
                       CircleAvatar(
-                        backgroundColor: AppColor.white,
+                        backgroundColor: AppColor.tertiaryColor,
                         radius: ScreenSize.width(context) * 0.25,
                         child: Center(
                           child: Image.asset(
@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius:  BorderRadius.circular(20.0),
                             side: const BorderSide(
                               style: BorderStyle.solid,
-                              color: AppColor.primaryColor,
+                              color: AppColor.white,
                               width: 3.0
                             ),
                           ),

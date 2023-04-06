@@ -7,7 +7,7 @@ showToast(String message, ToastGravity gravity) {
     msg: message,
     backgroundColor: AppColor.primaryColor,
     gravity: gravity,
-    textColor: AppColor.white,
+    textColor: AppColor.tertiaryColor,
     fontSize: 15,
     toastLength: Toast.LENGTH_SHORT,
   );

@@ -25,7 +25,7 @@ class _CreateSpaceState extends State<CreateSpace> {
       child: Spinner(
         child: Scaffold(
           appBar: titleAppBarWithBackButton(title: "CREATE NEW SPACE", subTitle: '', context: context),
-          backgroundColor: AppColor.white,
+          backgroundColor: AppColor.tertiaryColor,
           extendBody: true,
           resizeToAvoidBottomInset: false,
           body: Padding(

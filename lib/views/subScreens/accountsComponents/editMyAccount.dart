@@ -34,11 +34,12 @@ class _EditMyAccountState extends State<EditMyAccount> {
         child: GetBuilder(
           init: AuthController(),
           builder: (_) => Scaffold(
+            backgroundColor: AppColor.tertiaryColor,
             appBar: titleAppBarWithBackButton(
                 title: "My Profile",
                 subTitle: "Edit Account Details",
                 context: context),
-            backgroundColor: AppColor.white,
+
             body: SingleChildScrollView(
               child: Form(
                 key: authController.updateProfileKey,
@@ -115,7 +116,7 @@ class _EditMyAccountState extends State<EditMyAccount> {
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
-                                  color: AppColor.blackMild),
+                                  color: AppColor.white),
                               textAlign: TextAlign.start,
                             ),
                           ),
@@ -126,14 +127,14 @@ class _EditMyAccountState extends State<EditMyAccount> {
                           child: TitleTextField(
                             title: 'Name',
                             hint: 'Name',
-                            textColor: AppColor.black,
-                            hintTextColor: AppColor.grey,
-                            cursorColor: AppColor.blackMild,
+                            textColor: AppColor.white,
+                            hintTextColor: AppColor.white,
+                            cursorColor: AppColor.white,
                             controller: authController.name,
                             keyboardType: TextInputType.text,
                             icon: const Icon(
                               Icons.person,
-                              color: AppColor.primaryColor,
+                              color: AppColor.white,
                             ),
                             node: authController.nameNode,
                             onChanged: (value) {
@@ -161,7 +162,7 @@ class _EditMyAccountState extends State<EditMyAccount> {
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
-                                  color: AppColor.blackMild),
+                                  color: AppColor.white),
                               textAlign: TextAlign.start,
                             ),
                           ),
@@ -172,14 +173,14 @@ class _EditMyAccountState extends State<EditMyAccount> {
                           child: TitleTextField(
                             title: 'Phone',
                             hint: 'Phone',
-                            textColor: AppColor.black,
-                            hintTextColor: AppColor.grey,
-                            cursorColor: AppColor.blackMild,
+                            textColor: AppColor.white,
+                            hintTextColor: AppColor.white,
+                            cursorColor: AppColor.white,
                             controller: authController.phone,
                             keyboardType: TextInputType.number,
                             icon: const Icon(
                               Icons.phone,
-                              color: AppColor.primaryColor,
+                              color: AppColor.white,
                             ),
                             node: authController.phoneNode,
                             onChanged: (value) {
@@ -207,7 +208,7 @@ class _EditMyAccountState extends State<EditMyAccount> {
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
-                                  color: AppColor.blackMild),
+                                  color: AppColor.white),
                               textAlign: TextAlign.start,
                             ),
                           ),
@@ -223,15 +224,15 @@ class _EditMyAccountState extends State<EditMyAccount> {
                             child: TitleTextField(
                               title: 'Email',
                               hint: 'Email',
-                              textColor: AppColor.black,
-                              hintTextColor: AppColor.grey,
-                              cursorColor: AppColor.blackMild,
+                              textColor: AppColor.white,
+                              hintTextColor: AppColor.white,
+                              cursorColor: AppColor.white,
                               enabled: false,
                               controller: authController.email,
                               keyboardType: TextInputType.emailAddress,
                               icon: const Icon(
                                 Icons.email,
-                                color: AppColor.primaryColor,
+                                color: AppColor.white,
                               ),
                             ),
                           ),
@@ -252,6 +253,7 @@ class _EditMyAccountState extends State<EditMyAccount> {
                         ? AppColor.primaryColor
                         : AppColor.grey,
                     onTap: () {
+
                       if (authController.profileChanged.value == true) {
                         authController.updateUserInfo();
                       } else {

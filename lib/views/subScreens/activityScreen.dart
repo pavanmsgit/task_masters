@@ -43,6 +43,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
         length: 2,
         initialIndex: 0,
         child: Scaffold(
+          backgroundColor: AppColor.tertiaryColor,
           appBar: widget.backButton ?
           titleAppBarWithBackButton(
             title: 'Activity History',
@@ -50,19 +51,19 @@ class _ActivityScreenState extends State<ActivityScreen> {
             context: context,
             tabBars: const TabBar(
               indicatorSize: TabBarIndicatorSize.label,
-              indicatorColor: AppColor.white,
+              indicatorColor: AppColor.tertiaryColor,
               isScrollable: true,
               tabs: [
                 Tab(
                   child: Text(
                     "Completed",
-                    style: TextStyle(color: AppColor.white),
+                    style: TextStyle(color: AppColor.tertiaryColor),
                   ),
                 ),
                 Tab(
                   child: Text(
                     "Pending",
-                    style: TextStyle(color: AppColor.white),
+                    style: TextStyle(color: AppColor.tertiaryColor),
                   ),
                 ),
               ],
@@ -72,25 +73,25 @@ class _ActivityScreenState extends State<ActivityScreen> {
             context: context,
             tabBars: const TabBar(
               indicatorSize: TabBarIndicatorSize.label,
-              indicatorColor: AppColor.white,
+              indicatorColor: AppColor.tertiaryColor,
               isScrollable: true,
               tabs: [
                 Tab(
                   child: Text(
                     "Completed",
-                    style: TextStyle(color: AppColor.white),
+                    style: TextStyle(color: AppColor.tertiaryColor),
                   ),
                 ),
                 Tab(
                   child: Text(
                     "Pending",
-                    style: TextStyle(color: AppColor.white),
+                    style: TextStyle(color: AppColor.tertiaryColor),
                   ),
                 ),
               ],
             ),
           ),
-          backgroundColor: AppColor.white,
+
           body: TabBarView(
             children: [
               ///RETURNS ALL TASKS
@@ -113,6 +114,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
           .where("acceptedByEmail", isEqualTo: authController.profile!.email)
           .where("status", isEqualTo: 2)
           .snapshots(),
+
       builder: (context, snapshot) {
         if (snapshot.data?.docs.length == 0) {
           return NoTasksErrorPage();
@@ -203,7 +205,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
           child: Column(
             children: const [
               SizedBox(
-                height: 50,
+                height: 10,
               ),
               ShimmerWidget(),
             ],
@@ -370,7 +372,7 @@ class _NoTasksErrorPageState extends State<NoTasksErrorPage> {
                     style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w400,
-                        color: AppColor.blackMild),
+                        color: AppColor.primaryColor),
                     textAlign: TextAlign.center,
                   ),
                 ),

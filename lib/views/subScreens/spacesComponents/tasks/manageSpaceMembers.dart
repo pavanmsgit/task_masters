@@ -49,7 +49,7 @@ class _ManageSpaceMembersState extends State<ManageSpaceMembers> {
             title: "Members",
             subTitle: "Space Capacity : ${widget.spaces.spaceCapacity}",
             context: context),
-        backgroundColor: AppColor.white,
+        backgroundColor: AppColor.tertiaryColor,
         body: allSpaceUsers(),
         floatingActionButton:
             widget.spaces.spaceAdminEmail == authController.profile!.email
@@ -167,6 +167,7 @@ class _ListItemViewTasksState extends State<ListItemViewTasks> {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Card(
+          color: AppColor.white.withOpacity(0.4),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
           ),
@@ -183,7 +184,10 @@ class _ListItemViewTasksState extends State<ListItemViewTasks> {
                   leading: Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: Container(
-                      color: AppColor.white,
+                      decoration: BoxDecoration(
+                        color: AppColor.white.withOpacity(0.4),
+                        borderRadius: BorderRadius.circular(60.0),
+                      ),
                       height: ScreenSize.height(context) * 0.1,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(30.0),
@@ -269,7 +273,7 @@ class _NoUsersErrorPageState extends State<NoUsersErrorPage> {
                     style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w400,
-                        color: AppColor.blackMild),
+                        color: AppColor.white),
                     textAlign: TextAlign.center,
                   ),
                 ),

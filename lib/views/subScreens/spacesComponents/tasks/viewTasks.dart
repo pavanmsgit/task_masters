@@ -12,7 +12,6 @@ import 'package:task_masters/controllers/taskController.dart';
 import 'package:task_masters/models/spaces.dart';
 import 'package:task_masters/models/tasks.dart';
 import 'package:task_masters/views/subScreens/spacesComponents/chatsScreen.dart';
-import 'package:task_masters/views/subScreens/spacesComponents/createSpace.dart';
 import 'package:task_masters/views/subScreens/spacesComponents/tasks/createTasks.dart';
 import 'package:task_masters/views/subScreens/spacesComponents/tasks/manageSpaceMembers.dart';
 import 'package:task_masters/widgets/appBars.dart';
@@ -42,28 +41,35 @@ class _ViewTasksState extends State<ViewTasks> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       initialIndex: 0,
       child: Scaffold(
+        backgroundColor: AppColor.tertiaryColor,
         appBar: titleAppBarWithBackButton(
             title: "Tasks",
             subTitle: "Manage Tasks",
             context: context,
             tabBars: const TabBar(
               indicatorSize: TabBarIndicatorSize.label,
-              indicatorColor: AppColor.white,
+              indicatorColor: AppColor.tertiaryColor,
               isScrollable: true,
               tabs: [
                 Tab(
                   child: Text(
                     "All Tasks",
-                    style: TextStyle(color: AppColor.white),
+                    style: TextStyle(color: AppColor.tertiaryColor),
                   ),
                 ),
                 Tab(
                   child: Text(
                     "My Tasks",
-                    style: TextStyle(color: AppColor.white),
+                    style: TextStyle(color: AppColor.tertiaryColor),
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    "Manage",
+                    style: TextStyle(color: AppColor.tertiaryColor),
                   ),
                 ),
               ],
@@ -78,7 +84,7 @@ class _ViewTasksState extends State<ViewTasks> {
                     },
                     icon: const Icon(
                       Icons.people,
-                      color: AppColor.white,
+                      color: AppColor.tertiaryColor,
                       size: 30.0,
                     )),
               ) ,
@@ -91,19 +97,22 @@ class _ViewTasksState extends State<ViewTasks> {
                     },
                     icon: const Icon(
                       Icons.chat,
-                      color: AppColor.white,
+                      color: AppColor.tertiaryColor,
                       size: 30.0,
                     )),
               )
             ]),
-        backgroundColor: AppColor.white,
+
         body: TabBarView(
           children: [
             ///RETURNS ALL TASKS
             allTasks(),
 
             ///RETURNS MY TASKS - ACCEPTED BY THE CURRENT USER
-            myTasks()
+            myTasks(),
+
+            ///MANAGE TASKS CREATED BY ME
+            createdByMeTasks()
           ],
         ),
         floatingActionButton: FloatingActionButton(
@@ -113,7 +122,7 @@ class _ViewTasksState extends State<ViewTasks> {
           backgroundColor: AppColor.primaryColor,
           child: const Icon(
             Icons.add_task,
-            color: AppColor.white,
+            color: AppColor.tertiaryColor,
             size: 30.0,
           ),
         ),
@@ -240,6 +249,65 @@ class _ViewTasksState extends State<ViewTasks> {
       },
     );
   }
+
+
+  ///RETURNS TASK WHICH ARE ACCEPTED BY THE USER
+  createdByMeTasks() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection("spaces")
+          .doc(widget.spaceDocId)
+          .collection("tasks")
+          .where("taskByEmail", isEqualTo: authController.profile!.email)
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.data?.docs.length == 0) {
+          return NoTasksErrorPage();
+        }
+
+        if (snapshot.hasData) {
+          return CustomScrollView(
+            slivers: <Widget>[
+              const SliverPadding(
+                padding: EdgeInsets.only(top: 10),
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                    QueryDocumentSnapshot? data = snapshot.data?.docs[index];
+                    final tasks = Tasks.fromSnapshot(data!);
+
+                    return ListItemViewTasks(
+                      tasks: tasks,
+                      space: widget.space,
+                      spaceDocId: widget.spaceDocId,
+                      taskDocId: data.id,
+
+                    );
+                  },
+                  childCount: snapshot.data?.docs.length,
+                ),
+              ),
+              const SliverPadding(
+                padding: EdgeInsets.only(bottom: 40),
+              ),
+            ],
+          );
+        }
+
+        return SingleChildScrollView(
+          child: Column(
+            children: const [
+              SizedBox(
+                height: 50,
+              ),
+              ShimmerWidget(),
+            ],
+          ),
+        );
+      },
+    );
+  }
 }
 
 class ListItemViewTasks extends StatefulWidget {
@@ -281,6 +349,7 @@ class _ListItemViewTasksState extends State<ListItemViewTasks> {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Card(
+          color: AppColor.white.withOpacity(0.4),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
           ),
@@ -306,8 +375,9 @@ class _ListItemViewTasksState extends State<ListItemViewTasks> {
                           child: const Icon(
                             Icons.task_alt,
                             size: 30.0,
-                            color: AppColor.white,
-                          )),
+                            color: AppColor.tertiaryColor,
+                          ),
+                      ),
                     ),
                   ),
 
@@ -338,7 +408,10 @@ class _ListItemViewTasksState extends State<ListItemViewTasks> {
                   ),
 
                   trailing: Container(
-                    color: AppColor.white,
+                    decoration: BoxDecoration(
+                      color: AppColor.white.withOpacity(0.4),
+                      borderRadius: BorderRadius.circular(30.0)
+                    ),
                     width: ScreenSize.height(context) * 0.05,
                     height: ScreenSize.height(context) * 0.05,
                     child: ClipRRect(
@@ -368,7 +441,7 @@ class _ListItemViewTasksState extends State<ListItemViewTasks> {
                   ),
                   AutoSizeText(
                     DateFormat('dd-MM-yyyy  kk:mm a')
-                        .format(tasks.taskSelectedTime.toDate()),
+                        .format(tasks.taskSelectedStartTime.toDate()),
                     style: const TextStyle(
                       fontSize: 16.0,
                       fontWeight: FontWeight.w500,
@@ -581,7 +654,7 @@ class _NoTasksErrorPageState extends State<NoTasksErrorPage> {
                     style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w400,
-                        color: AppColor.blackMild),
+                        color: AppColor.primaryColor),
                     textAlign: TextAlign.center,
                   ),
                 ),

@@ -25,7 +25,7 @@ class AccountScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: titleAppBar(context: context),
-        backgroundColor: AppColor.white,
+        backgroundColor: AppColor.tertiaryColor,
         body: GetBuilder(
           init: AuthController(),
           builder: (_) => SingleChildScrollView(
@@ -39,13 +39,13 @@ class AccountScreen extends StatelessWidget {
                 authController.profile!.profileImage.isEmpty ?
                 Container(
                   decoration: BoxDecoration(
-                    color: AppColor.primaryColor,
-                    borderRadius: BorderRadius.circular(60),
+                    color: AppColor.tertiaryColor,
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  width: ScreenSize.width(context) * 0.15,
+                  width: ScreenSize.height(context) * 0.15,
                   height: ScreenSize.height(context) * 0.15,
                   child: ClipRRect(
-                      borderRadius: BorderRadius.circular(60),
+                      borderRadius: BorderRadius.circular(30),
                       child:  const Icon(
                         Icons.person,
                         size: 50,
@@ -54,7 +54,7 @@ class AccountScreen extends StatelessWidget {
                   ),
                 ) :
                 Container(
-                  color: AppColor.white,
+                  color: AppColor.tertiaryColor,
                   width: ScreenSize.height(context) * 0.15,
                   height: ScreenSize.height(context) * 0.15,
                   child: ClipRRect(
@@ -69,11 +69,13 @@ class AccountScreen extends StatelessWidget {
                 ///USER DETAILS
                 Card(
                   elevation: 0.0,
+                  color: AppColor.tertiaryColor,
                   child: ListTile(
                     title: Text(
                       authController.profile!.name!,
                       style: const TextStyle(
                         fontSize: 15,
+                          color: AppColor.white
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -84,7 +86,7 @@ class AccountScreen extends StatelessWidget {
                         maxLines: 2,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                          fontSize: 15,
+                          fontSize: 15, color: AppColor.white
                         ),
                       ),
                     ),
@@ -93,6 +95,7 @@ class AccountScreen extends StatelessWidget {
 
 
                 GestureDetector(
+
                   onTap: (){
                     Get.to(() => const PointsHistory());
                   },
@@ -127,7 +130,7 @@ class AccountScreen extends StatelessWidget {
                 Divider(
                   height: ScreenSize.height(context) * 0.025,
                   thickness: 2,
-                  color: AppColor.black.withOpacity(0.4),
+                  color: AppColor.white.withOpacity(0.4),
                 ),
 
                 AccountTile(
@@ -184,17 +187,6 @@ class AccountScreen extends StatelessWidget {
                     );
                   },
                 ),
-                // AccountTile(
-                //   iconData: Icons.delete,
-                //   title: 'Delete Account',
-                //   onTap: () {
-                //     yesNoDialogOld(
-                //       context,
-                //       text: 'Do you want to delete the account?',
-                //       onTap: userController.deleteUserAccount,
-                //     );
-                //   },
-                // ),
               ],
             ),
           )
@@ -228,10 +220,10 @@ class AccountTile extends StatelessWidget {
         ),
         padding: const EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColor.tertiaryColor,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.0),
+              color: AppColor.tertiaryColor.withOpacity(0.0),
               blurRadius: 0,
             )
           ],
@@ -248,7 +240,7 @@ class AccountTile extends StatelessWidget {
               title,
               style: const TextStyle(
                 fontSize: 13,
-                color: AppColor.blackMild,
+                color: AppColor.white,
               ),
             ),
             const Spacer(),

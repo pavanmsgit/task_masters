@@ -17,11 +17,12 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await GetStorage.init();
 
+  await GetStorage.init();
 
   Get.put(AuthController());
   Get.put(HomeController());
@@ -46,11 +47,11 @@ class MyApp extends StatelessWidget {
 
      return WillPopScope(
        onWillPop: () => onWillPop(context),
+
        child: GetMaterialApp(
          debugShowCheckedModeBanner: false,
-         title: 'Task Masters',
+         title: 'TaskMaster',
          color: AppColor.primaryColor,
-
          theme: ThemeData(
            accentColor: AppColor.primaryColor,
            primaryColor: AppColor.primaryColor,
@@ -62,57 +63,4 @@ class MyApp extends StatelessWidget {
        ),
      );
    }
-
-}
-
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  bool _isLoggedIn = false;
-  late GoogleSignInAccount _userObj;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Codesundar")),
-      body: Container(
-        child: _isLoggedIn
-            ? Column(
-          children: [
-            Image.network(_userObj.photoUrl!),
-            Text(_userObj.displayName!),
-            Text(_userObj.email),
-            TextButton(
-                onPressed: () {
-                  _googleSignIn.signOut().then((value) {
-                    setState(() {
-                      _isLoggedIn = false;
-                    });
-                  }).catchError((e) {});
-                },
-                child: const Text("Logout"))
-          ],
-        )
-            : Center(
-          child: ElevatedButton(
-            child: const Text("Login with Google"),
-            onPressed: () {
-              _googleSignIn.signIn().then((userData) {
-                setState(() {
-                  _isLoggedIn = true;
-                  _userObj = userData!;
-                });
-              }).catchError((e) {
-                print(e);
-              });
-            },
-          ),
-        ),
-      ),
-    );
-  }
 }

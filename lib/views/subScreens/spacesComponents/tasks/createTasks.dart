@@ -28,7 +28,7 @@ class _CreateTasksState extends State<CreateTasks> {
       child: Spinner(
         child: Scaffold(
           appBar: titleAppBarWithBackButton(title: "CREATE NEW TASK", subTitle: '', context: context),
-          backgroundColor: AppColor.white,
+          backgroundColor: AppColor.tertiaryColor,
           extendBody: true,
           resizeToAvoidBottomInset: false,
           body: Padding(
@@ -89,13 +89,13 @@ class _CreateTasksState extends State<CreateTasks> {
 
 
                            ///TASK SELECTED TIME
-                           Obx(() =>  taskController.taskSelectedTimeString.value == "" ?
+                           Obx(() =>  taskController.taskSelectedStartTimeString.value == "" ?
                            ElevatedButton(
                              style: ButtonStyle(
                                  backgroundColor: MaterialStateProperty.all<Color>(AppColor.primaryColor)
                              ),
                              onPressed: () async {
-                               taskController.taskSelectedTime = await showOmniDateTimePicker(
+                               taskController.taskSelectedStartTime = await showOmniDateTimePicker(
                                  context: context,
                                  initialDate: DateTime.now(),
                                  firstDate: DateTime.now(),
@@ -126,9 +126,9 @@ class _CreateTasksState extends State<CreateTasks> {
                                  transitionDuration: const Duration(milliseconds: 200),
                                  barrierDismissible: true,
                                );
-                               taskController.updateSelectedTimeString();
+                               taskController.updateSelectedStartTimeString();
                              },
-                             child: const Text("Select Task Time"),
+                             child: const Text("Select Start Time"),
                            ) :
                            Column(
                              mainAxisAlignment: MainAxisAlignment.center,
@@ -136,11 +136,12 @@ class _CreateTasksState extends State<CreateTasks> {
                                Padding(
                                  padding: const EdgeInsets.only(left: 0),
                                  child: AutoSizeText(
-                                   "SELECTED TIME : ${taskController.taskSelectedTimeString.toString()}",
+                                   "SELECTED START TIME : ${taskController.taskSelectedStartTimeString.toString()}",
                                    maxLines: 1,
                                    style: const TextStyle(
                                      fontSize: 15,
                                      fontWeight: FontWeight.w400,
+                                       color: AppColor.white
                                    ),
                                  ),
                                ),
@@ -150,7 +151,7 @@ class _CreateTasksState extends State<CreateTasks> {
                                      backgroundColor: MaterialStateProperty.all<Color>(AppColor.primaryColor)
                                  ),
                                  onPressed: () async {
-                                   taskController.taskSelectedTime = await showOmniDateTimePicker(
+                                   taskController.taskSelectedStartTime = await showOmniDateTimePicker(
                                      context: context,
                                      initialDate: DateTime.now(),
                                      firstDate: DateTime.now(),
@@ -181,12 +182,115 @@ class _CreateTasksState extends State<CreateTasks> {
                                      transitionDuration: const Duration(milliseconds: 200),
                                      barrierDismissible: true,
                                    );
-                                   taskController.updateSelectedTimeString();
+                                   taskController.updateSelectedStartTimeString();
                                  },
                                  child: const Text("Update Task Time"),
                                )
                              ],
                            ),),
+
+
+
+                            ///TASK END TIME
+                            Obx(() =>  taskController.taskSelectedEndTimeString.value == "" ?
+                            ElevatedButton(
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all<Color>(AppColor.primaryColor)
+                              ),
+                              onPressed: () async {
+                                taskController.taskSelectedEndTime = await showOmniDateTimePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime.now(),
+                                  lastDate: DateTime.now().add(
+                                    const Duration(days: 365),
+                                  ),
+                                  type: OmniDateTimePickerType.dateAndTime,
+                                  is24HourMode: false,
+                                  isShowSeconds: false,
+                                  minutesInterval: 15,
+                                  secondsInterval: 1,
+                                  borderRadius: const BorderRadius.all(Radius.circular(16)),
+                                  constraints: const BoxConstraints(
+                                    maxWidth: 350,
+                                    maxHeight: 650,
+                                  ),
+                                  transitionBuilder: (context, anim1, anim2, child) {
+                                    return FadeTransition(
+                                        opacity: anim1.drive(
+                                          Tween(
+                                            begin: 0,
+                                            end: 1,
+                                          ),
+                                        ),
+                                        child: child
+                                    );
+                                  },
+                                  transitionDuration: const Duration(milliseconds: 200),
+                                  barrierDismissible: true,
+                                );
+                                taskController.updateSelectedEndTimeString();
+                              },
+                              child: const Text("Select End Time"),
+                            ) :
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 0),
+                                  child: AutoSizeText(
+                                    "SELECTED END TIME : ${taskController.taskSelectedEndTimeString.toString()}",
+                                    maxLines: 1,
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColor.white
+                                    ),
+                                  ),
+                                ),
+
+                                ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty.all<Color>(AppColor.primaryColor)
+                                  ),
+                                  onPressed: () async {
+                                    taskController.taskSelectedEndTime = await showOmniDateTimePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime.now(),
+                                      lastDate: DateTime.now().add(
+                                        const Duration(days: 365),
+                                      ),
+                                      type: OmniDateTimePickerType.dateAndTime,
+                                      is24HourMode: false,
+                                      isShowSeconds: false,
+                                      minutesInterval: 15,
+                                      secondsInterval: 1,
+                                      borderRadius: const BorderRadius.all(Radius.circular(16)),
+                                      constraints: const BoxConstraints(
+                                        maxWidth: 350,
+                                        maxHeight: 650,
+                                      ),
+                                      transitionBuilder: (context, anim1, anim2, child) {
+                                        return FadeTransition(
+                                            opacity: anim1.drive(
+                                              Tween(
+                                                begin: 0,
+                                                end: 1,
+                                              ),
+                                            ),
+                                            child: child
+                                        );
+                                      },
+                                      transitionDuration: const Duration(milliseconds: 200),
+                                      barrierDismissible: true,
+                                    );
+                                    taskController.updateSelectedEndTimeString();
+                                  },
+                                  child: const Text("Update End Time"),
+                                )
+                              ],
+                            ),),
 
                           ],
                         ),

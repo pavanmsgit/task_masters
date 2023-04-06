@@ -71,7 +71,7 @@ class TitleTextField extends StatelessWidget {
             style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
-                color: AppColor.primaryColor
+                color: AppColor.white
             ),
           ) : Container(),
           CustomTextField(
@@ -89,9 +89,9 @@ class TitleTextField extends StatelessWidget {
             node: node,
             onSubmit: onSubmit,
             maxLength: maxLength,
-            cursorColor: cursorColor,
-            textColor: textColor,
-            hintTextColor: hintTextColor,
+            cursorColor: cursorColor ?? AppColor.white,
+            textColor: textColor ?? AppColor.white,
+            hintTextColor: hintTextColor ?? AppColor.white,
             len: len,
             textSize: textSize,
             hintTextSize: hintTextSize,

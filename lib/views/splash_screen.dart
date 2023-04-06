@@ -9,27 +9,26 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //CHECKS AUTHENTICATION STATUS
+    ///CHECKS AUTHENTICATION STATUS
     authController.checkAuth();
-
     authController.getUserProfile();
 
-    // locationController.getLocationPermission();
-    // locationController.getLatestAddress().whenComplete(() => true);
-    // assetController.updateAssetInfoForFilter(null).whenComplete(() => true);
     return Scaffold(
+
       body: Container(
-        color: AppColor.white,
+        color: AppColor.tertiaryColor,
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             Container(),
             Expanded(
-              child: Center(
-                child: Image(
-                  height: ScreenSize.height(context) * 0.18,
-                  image: const AssetImage(
+              child:CircleAvatar(
+                backgroundColor: AppColor.tertiaryColor,
+                radius: ScreenSize.width(context) * 0.25,
+                child: Center(
+                  child: Image.asset(
                     AppImages.appLogoTransparent,
+                    height: ScreenSize.height(context) * 0.25,
                   ),
                 ),
               ),

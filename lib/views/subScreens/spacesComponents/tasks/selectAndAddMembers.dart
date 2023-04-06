@@ -44,6 +44,8 @@ class _SelectAndAddMembersState extends State<SelectAndAddMembers> {
     return WillPopScope(
       onWillPop: () => spacesController.clearSpaceUserList(),
       child: Scaffold(
+        backgroundColor: AppColor.tertiaryColor,
+
         appBar: titleAppBarWithBackButton(
             title: "Task Master Users",
             subTitle: "Current Space Capacity : ${spacesController.currentCapacity.value}",
@@ -51,7 +53,6 @@ class _SelectAndAddMembersState extends State<SelectAndAddMembers> {
             onPress: () {
               spacesController.clearSpaceUserList();
             }),
-        backgroundColor: AppColor.white,
         body: allUsers(),
         bottomNavigationBar: Obx(
               () => spacesController.addUsersButtonStatus.value
@@ -182,6 +183,7 @@ class _ListItemViewTasksState extends State<ListItemViewTasks> {
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Card(
+              color: AppColor.white.withOpacity(0.4),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0),
               ),
@@ -198,7 +200,10 @@ class _ListItemViewTasksState extends State<ListItemViewTasks> {
                           leading: Padding(
                             padding: const EdgeInsets.all(3.0),
                             child: Container(
-                              color: AppColor.white,
+                             decoration: BoxDecoration(
+                               color: AppColor.white.withOpacity(0.4),
+                               borderRadius: BorderRadius.circular(60.0),
+                             ),
                               height: ScreenSize.height(context) * 0.1,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(30.0),
@@ -240,10 +245,10 @@ class _ListItemViewTasksState extends State<ListItemViewTasks> {
                           trailing: Icon(
                             Icons.check_circle,
                             color: isSelected.value == true
-                                ? AppColor.green
-                                : AppColor.grey,
+                                ? AppColor.primaryColor
+                                : AppColor.blackMild.withOpacity(0.5),
                             size: 30.0,
-                          ))),
+                          ),),),
                 ],
               ),
             ),

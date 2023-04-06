@@ -38,7 +38,7 @@ class _ChatScreenState extends State<ChatScreen> {
           title: "Space Chats",
           subTitle: widget.spaceName,
           context: context),
-      backgroundColor: AppColor.white,
+      backgroundColor: AppColor.tertiaryColor,
       body: GetBuilder(
         init: SpacesController(),
         builder: (_) => groupChats(),
@@ -58,11 +58,11 @@ class _ChatScreenState extends State<ChatScreen> {
               child: TextField(
                 decoration: const InputDecoration(
                     hintText: "Write message...",
-                    hintStyle: TextStyle(color: Colors.white),
+                    hintStyle: TextStyle(color: AppColor.tertiaryColor,),
                     border: InputBorder.none),
-                style: const TextStyle(color: AppColor.white),
+                style: const TextStyle(color: AppColor.tertiaryColor,),
                 controller: spacesController.chatsController,
-                cursorColor: AppColor.white,
+                cursorColor: AppColor.tertiaryColor,
               ),
             ),
             const SizedBox(
@@ -72,11 +72,11 @@ class _ChatScreenState extends State<ChatScreen> {
               onPressed: () {
                 spacesController.sendMessage(spaceDocId: widget.spaceDocId);
               },
-              backgroundColor: Colors.white,
+              backgroundColor: AppColor.tertiaryColor,
               elevation: 0,
               child: const Icon(
                 Icons.send,
-                color: AppColor.primaryColor,
+                color: AppColor.white,
                 size: 20,
               ),
             ),
@@ -221,9 +221,11 @@ class _ListBodyForPurchaseRequestState
                   style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w400,
-                      color: AppColor.black),
+                      color: AppColor.white),
                 ),
               )),
+
+
           Container(
               alignment:
                   widget.chats.email == authController.profile!.email
@@ -234,12 +236,12 @@ class _ListBodyForPurchaseRequestState
               margin: const EdgeInsets.only(
                   left: 5.0, right: 5.0, top: 0, bottom: 0),
               decoration: const BoxDecoration(
-                color: AppColor.white,
+                color: AppColor.tertiaryColor,
                 borderRadius: BorderRadius.all(Radius.circular(0.0)),
               ),
               child: Text(
                "By ${widget.chats.name} at ${DateFormat('hh:mm a').format(widget.chats.referenceTimestamp.toDate())}",
-                style: const TextStyle(fontSize: 10, color: AppColor.blackMild),
+                style: const TextStyle(fontSize: 10, color: AppColor.white),
               ))
         ],
       ),
@@ -273,7 +275,7 @@ class NoChats extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w400,
-                      color: AppColor.blackMild),
+                      color: AppColor.primaryColor),
                   textAlign: TextAlign.center,
                 ),
               ),

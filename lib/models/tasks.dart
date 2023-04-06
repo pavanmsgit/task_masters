@@ -24,7 +24,8 @@ class Tasks {
     required this.taskTotalPoints,
     required this.taskCreatedTimestamp,
     this.taskCompletedTimestamp,
-    required this.taskSelectedTime,
+    required this.taskSelectedStartTime,
+    required this.taskSelectedEndTime,
     this.spaceTask,
   });
 
@@ -39,7 +40,8 @@ class Tasks {
   late String? acceptedByImage;
   late int status;
   late var taskTotalPoints;
-  late Timestamp taskSelectedTime;
+  late Timestamp taskSelectedStartTime;
+  late Timestamp taskSelectedEndTime;
   late Timestamp taskCreatedTimestamp;
   late Timestamp? taskCompletedTimestamp;
   late bool? spaceTask;
@@ -56,7 +58,8 @@ class Tasks {
         acceptedByImage: json["acceptedByImage"],
         status: json["status"],
         taskTotalPoints: json["taskTotalPoints"],
-        taskSelectedTime: json["taskTime"],
+        taskSelectedStartTime: json["taskSelectedStartTime"],
+    taskSelectedEndTime: json["taskSelectedEndTime"],
         taskCreatedTimestamp: json["taskCreatedTimestamp"],
         taskCompletedTimestamp: json["taskCompletedTimestamp"],
     spaceTask: json["spaceTask"],
@@ -74,7 +77,8 @@ class Tasks {
         "acceptedByEmail": acceptedByEmail,
         "status": status,
         "taskTotalPoints": taskTotalPoints,
-        "taskTime": taskSelectedTime,
+        "taskSelectedStartTime": taskSelectedStartTime,
+        "taskSelectedEndTime": taskSelectedEndTime,
         "taskCreatedTimestamp": taskCreatedTimestamp,
         "taskCompletedTimestamp": taskCompletedTimestamp,
         "spaceTask": spaceTask,
@@ -92,7 +96,8 @@ class Tasks {
     acceptedByEmail = json["acceptedByEmail"];
     status = json["status"];
     taskTotalPoints = json["taskTotalPoints"];
-    taskSelectedTime = json["taskSelectedTime"];
+    taskSelectedStartTime = json["taskSelectedStartTime"];
+    taskSelectedEndTime = json["taskSelectedEndTime"];
     taskCreatedTimestamp = json["taskCreatedTimestamp"];
     taskCompletedTimestamp = json["taskCompletedTimestamp"];
     spaceTask = json["spaceTask"];

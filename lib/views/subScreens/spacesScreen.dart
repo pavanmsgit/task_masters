@@ -32,13 +32,15 @@ class _SpacesScreenState extends State<SpacesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: titleAppBar(context: context),
-      backgroundColor: AppColor.white,
+      backgroundColor: AppColor.tertiaryColor,
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection("spaces")
             .where("spaceUsers", arrayContains: authController.profile!.email)
             .limit(100)
             .snapshots(),
+
+
         builder: (context, snapshot) {
           if (snapshot.data?.docs.length == 0) {
             return const NoSpacesErrorPage();
@@ -88,7 +90,7 @@ class _SpacesScreenState extends State<SpacesScreen> {
         backgroundColor: AppColor.primaryColor,
         child: const Icon(
           Icons.add,
-          color: AppColor.white,
+          color: AppColor.tertiaryColor,
           size: 30.0,
         ),
       ),
@@ -126,11 +128,13 @@ class _ListItemViewUsersState extends State<ListItemViewUsers> {
   Widget listItemComponent({required Spaces spaces}) {
     return GestureDetector(
       onTap: () async {
-        await Get.to(() => ViewTasks(spaceDocId: widget.spaceDocId,space: spaces));
+        await Get.to(
+            () => ViewTasks(spaceDocId: widget.spaceDocId, space: spaces));
       },
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Card(
+          color: AppColor.white.withOpacity(0.4),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
           ),
@@ -147,23 +151,26 @@ class _ListItemViewUsersState extends State<ListItemViewUsers> {
                   leading: spaces.spaceImage.isEmpty
                       ? Container(
                           decoration: BoxDecoration(
-                            color: AppColor.primaryColor,
+                            color: AppColor.white.withOpacity(0.4),
                             borderRadius: BorderRadius.circular(60.0),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(30.0),
-                              child: const Icon(
+                              child: Icon(
                                 Icons.people,
                                 size: 35.0,
-                                color: AppColor.white,
+                                color: AppColor.white.withOpacity(0.4),
                               ),
                             ),
                           ),
                         )
                       : Container(
-                          color: AppColor.white,
+                          decoration: BoxDecoration(
+                            color: AppColor.white.withOpacity(0.4),
+                            borderRadius: BorderRadius.circular(60.0),
+                          ),
                           width: ScreenSize.height(context) * 0.075,
                           height: ScreenSize.height(context) * 0.15,
                           child: ClipRRect(
@@ -184,6 +191,7 @@ class _ListItemViewUsersState extends State<ListItemViewUsers> {
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
+                        color: AppColor.white
                       ),
                     ),
                   ),
@@ -198,11 +206,16 @@ class _ListItemViewUsersState extends State<ListItemViewUsers> {
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
+                          color: AppColor.white
+
                       ),
                     ),
                   ),
                   trailing: Container(
-                    color: AppColor.white,
+                    decoration: BoxDecoration(
+                      color: AppColor.white.withOpacity(0.4),
+                      borderRadius: BorderRadius.circular(60.0),
+                    ),
                     width: ScreenSize.height(context) * 0.05,
                     height: ScreenSize.height(context) * 0.05,
                     child: ClipRRect(
@@ -254,7 +267,7 @@ class _NoSpacesErrorPageState extends State<NoSpacesErrorPage> {
                     style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w400,
-                        color: AppColor.blackMild),
+                        color: AppColor.primaryColor),
                     textAlign: TextAlign.center,
                   ),
                 ),

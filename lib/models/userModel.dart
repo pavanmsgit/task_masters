@@ -14,7 +14,8 @@ List<UserModel> usersFromJson(str) =>
 String usersToJson(List<UserModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class UserModel {
+class UserModel{
+
   DocumentReference<Object?>? reference;
 
   UserModel({
@@ -27,7 +28,7 @@ class UserModel {
     this.token,
     this.addressLatLong,
     this.address,
-    this.points,
+    this.points
   });
 
   late String name;
@@ -82,4 +83,6 @@ class UserModel {
 
   UserModel.fromSnapshot(QueryDocumentSnapshot snapshot)
       : this.fromMap(snapshot.data(), reference: snapshot.reference);
+
+
 }

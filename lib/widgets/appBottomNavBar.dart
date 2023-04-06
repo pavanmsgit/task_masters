@@ -19,7 +19,6 @@ class _AppBottomNavState extends State<AppBottomNav> {
   //ICON LIST FOR BOTTOM NAVIGATION BAR
   final iconList = <IconData>[
     Icons.supervised_user_circle,
-    //Icons.person,
     Icons.checklist,
     Icons.account_circle_rounded,
   ];
@@ -30,7 +29,7 @@ class _AppBottomNavState extends State<AppBottomNav> {
       icons: iconList,
       iconSize: 30,
       backgroundColor:AppColor.primaryColor,
-      activeColor: AppColor.blackMild,
+      activeColor: AppColor.tertiaryColor,
       notchMargin: 10,
       inactiveColor: AppColor.white,
       activeIndex: hc.selectedTab.value,

@@ -34,7 +34,8 @@ class TaskService {
     required String taskByName,
     required String taskByEmail,
     required String taskByImage,
-    required DateTime taskSelectedTime,
+    required DateTime taskSelectedStartTime,
+    required DateTime taskSelectedEndTime,
   }) async {
     await firebaseFirestore
         .collection('spaces')
@@ -45,7 +46,8 @@ class TaskService {
       "taskName": taskName,
       "taskDescription": taskDescription,
       "taskTotalPoints": taskTotalPoints,
-      "taskSelectedTime": taskSelectedTime,
+      "taskSelectedStartTime": taskSelectedStartTime,
+      "taskSelectedEndTime": taskSelectedStartTime,
       "taskByName": taskByName,
       "taskByEmail": taskByEmail,
       "taskByImage": taskByImage,
@@ -86,7 +88,7 @@ class TaskService {
           "taskName": task!.taskName,
           "taskDescription": task!.taskDescription,
           "taskTotalPoints": task!.taskTotalPoints,
-          "taskSelectedTime": task!.taskSelectedTime,
+          "taskSelectedTime": task!.taskSelectedStartTime,
           "taskByName": task!.taskByName,
           "taskByEmail": task!.taskByEmail,
           "taskByImage": task!.taskByImage,

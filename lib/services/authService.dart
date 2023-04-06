@@ -96,6 +96,7 @@ class AuthService {
     required String address,
     String? profileImage
   }) async {
+
     String? token = await firebaseMessaging.getToken();
 
     await firebaseFirestore.collection('users').doc(email).set({
@@ -108,7 +109,7 @@ class AuthService {
       "addressLatLong": const GeoPoint(0.00,0.00),
       "address": address ?? "",
       "token": token ?? "",
-      "points": 100,
+      "points": 100
     });
 
     ///ADDING TO SUB COLLECTION TO TRACK DATA
@@ -118,7 +119,7 @@ class AuthService {
         .collection("tokens")
         .add({
       "token": token,
-      "timestamp": DateTime.now(),
+      "timestamp": DateTime.now()
     });
 
     return true;

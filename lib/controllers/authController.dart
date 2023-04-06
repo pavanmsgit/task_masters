@@ -71,6 +71,7 @@ class AuthController extends GetxController {
     if (img != null) {
       imageFile = File(img.path);
       imageUpdated.value = true;
+      profileChanged.value = true;
       update();
     }
   }
@@ -108,8 +109,7 @@ class AuthController extends GetxController {
 
         if (!res.isBlank!) {
           ///CHECKS THE COUNT - RETURNS 1 IF THE USER EXISTS IN THE DB ELSE IF THE USER IS NEW THE RESULT WILL BE 0
-          Future<int> checkStatus =
-              authService.checkIfUserIsRegistered(email: res.user!.email!);
+          Future<int> checkStatus = authService.checkIfUserIsRegistered(email: res.user!.email!);
 
           ///RETRIEVING INT FROM FUTURE<INT>
           checkStatus.then((value) async {
@@ -125,6 +125,8 @@ class AuthController extends GetxController {
               ///ADDS LATEST TOKEN TO DB
               await authService.registerTokenToDB(email: res.user!.email!);
             }
+
+
           });
 
           ///SET USER EMAIL TO SHARED PREFERENCES
@@ -134,6 +136,7 @@ class AuthController extends GetxController {
           Get.offAll(
             () => const HomeScreenMain(),
           );
+
         } else {
           //showToast('Failed to login', ToastGravity.BOTTOM);
         }

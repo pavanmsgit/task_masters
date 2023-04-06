@@ -30,7 +30,7 @@ titleAppBar(
         centerTitle: true,
         title: Obx(
           () => AutoSizeText(homeController.appBarTitles
-              .elementAt(homeController.selectedTab.value)),
+              .elementAt(homeController.selectedTab.value),style: const TextStyle(color: AppColor.tertiaryColor),),
         ),
         elevation: 4,
         bottom: PreferredSize(
@@ -44,7 +44,7 @@ titleAppBar(
                         homeController.appBarSubTitles
                             .elementAt(homeController.selectedTab.value),
                         style: const TextStyle(
-                            color: AppColor.white,
+                            color: AppColor.tertiaryColor,
                             fontSize: 15,
                             fontWeight: FontWeight.w400),
                       )),
@@ -85,7 +85,7 @@ titleAppBarWithBackButton(
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: AppColor.white,
+            color: AppColor.tertiaryColor,
             size: 30,
           ),
           onPressed: onPress ??
@@ -97,7 +97,7 @@ titleAppBarWithBackButton(
         title: AutoSizeText(
           title ?? '',
           style: const TextStyle(
-              color: AppColor.white, fontSize: 15, fontWeight: FontWeight.bold),
+              color: AppColor.tertiaryColor, fontSize: 15, fontWeight: FontWeight.bold),
         ),
         elevation: 4,
         bottom: PreferredSize(
@@ -108,7 +108,7 @@ titleAppBarWithBackButton(
                 child: AutoSizeText(
                   subTitle ?? '',
                   style: const TextStyle(
-                      color: AppColor.white,
+                      color: AppColor.tertiaryColor,
                       fontSize: 13,
                       fontWeight: FontWeight.w400),
                 ),

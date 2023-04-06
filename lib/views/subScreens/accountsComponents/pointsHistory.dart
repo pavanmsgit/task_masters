@@ -46,7 +46,7 @@ class _PointsHistoryState extends State<PointsHistory> {
           subTitle: 'History of Points Added/Removed',
           context: context,
         ),
-        backgroundColor: AppColor.white,
+        backgroundColor: AppColor.tertiaryColor,
         body: pointsHistoryList(),
       ),
     );
@@ -59,6 +59,7 @@ class _PointsHistoryState extends State<PointsHistory> {
           .collection("points")
           .where("email", isEqualTo: authController.profile!.email)
           .snapshots(),
+
       builder: (context, snapshot) {
         if (snapshot.data?.docs.length == 0) {
           return NoPointsHistoryErrorPage();
@@ -160,6 +161,7 @@ class _ListItemViewTasksState extends State<ListItemViewTasks> {
             SizedBox(
               width: ScreenSize.width(context) * 0.75,
               child: Card(
+                color: AppColor.white.withOpacity(0.4),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
                 ),
@@ -170,7 +172,7 @@ class _ListItemViewTasksState extends State<ListItemViewTasks> {
                   ),
 
 
-                  ///TASK NAME
+                  ///POINTS MESSAGE
                   title: Padding(
                     padding: const EdgeInsets.only(left: 0),
                     child: AutoSizeText(
@@ -183,7 +185,7 @@ class _ListItemViewTasksState extends State<ListItemViewTasks> {
                     ),
                   ),
 
-                  ///TASK POINTS
+                  ///POINTS TIMESTAMP
                   subtitle: Padding(
                     padding: const EdgeInsets.only(left: 10, top: 5),
                     child: AutoSizeText(
@@ -237,7 +239,7 @@ class _NoPointsHistoryErrorPageState extends State<NoPointsHistoryErrorPage> {
                     style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w400,
-                        color: AppColor.blackMild),
+                        color: AppColor.primaryColor),
                     textAlign: TextAlign.center,
                   ),
                 ),

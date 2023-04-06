@@ -9,8 +9,8 @@ class ShimmerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-        baseColor: AppColor.greyShimmer,
-        highlightColor: AppColor.white,
+        baseColor: AppColor.tertiaryColor.withOpacity(0.5),
+        highlightColor: AppColor.primaryColor,
         child: SingleChildScrollView(
           child: Column(
             children: [
