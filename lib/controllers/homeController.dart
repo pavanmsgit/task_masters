@@ -7,7 +7,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:task_masters/services/authService.dart';
 import 'package:task_masters/views/subScreens/accountScreen.dart';
 import 'package:task_masters/views/subScreens/activityScreen.dart';
-import 'package:task_masters/views/subScreens/socialScreen.dart';
 import 'package:task_masters/views/subScreens/spacesScreen.dart';
 
 final HomeController homeController = Get.find<HomeController>();

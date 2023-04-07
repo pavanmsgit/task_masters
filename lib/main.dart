@@ -7,7 +7,6 @@ import 'package:task_masters/const/appColors.dart';
 import 'package:task_masters/controllers/authController.dart';
 import 'package:task_masters/controllers/launch_controller.dart';
 import 'package:task_masters/controllers/notificationController.dart';
-import 'package:task_masters/controllers/socialController.dart';
 import 'package:task_masters/controllers/spacesController.dart';
 import 'package:task_masters/controllers/taskController.dart';
 import 'package:task_masters/views/splash_screen.dart';
@@ -27,7 +26,6 @@ void main() async {
   Get.put(AuthController());
   Get.put(HomeController());
   Get.put(SpacesController());
-  Get.put(SocialController());
   Get.put(TaskController());
   Get.put(LaunchController());
   Get.put(NotificationController());
