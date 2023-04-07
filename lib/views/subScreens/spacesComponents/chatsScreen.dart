@@ -168,7 +168,7 @@ class _ListBodyForPurchaseRequestState
               decoration: BoxDecoration(
                 color: widget.chats.email ==
                         authController.profile!.email
-                    ? AppColor.primaryColor.withOpacity(0.5)
+                    ? AppColor.primaryColor
                     : AppColor.greyLight,
                 borderRadius: const BorderRadius.all(Radius.circular(30.0)),
               ),
@@ -221,7 +221,7 @@ class _ListBodyForPurchaseRequestState
                   style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w400,
-                      color: AppColor.white),
+                      color: AppColor.black),
                 ),
               )),
 
@@ -242,7 +242,8 @@ class _ListBodyForPurchaseRequestState
               child: Text(
                "By ${widget.chats.name} at ${DateFormat('hh:mm a').format(widget.chats.referenceTimestamp.toDate())}",
                 style: const TextStyle(fontSize: 10, color: AppColor.white),
-              ))
+              ),
+          ),
         ],
       ),
     );

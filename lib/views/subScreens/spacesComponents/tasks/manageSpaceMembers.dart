@@ -167,7 +167,7 @@ class _ListItemViewTasksState extends State<ListItemViewTasks> {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Card(
-          color: AppColor.white.withOpacity(0.4),
+          color: AppColor.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
           ),

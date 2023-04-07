@@ -110,7 +110,7 @@ class TaskMastersButton extends StatelessWidget {
         child: Text(
           buttonText,
           style: TextStyle(
-            color: textColor ?? Colors.white,
+            color: textColor ?? Colors.black,
             fontSize: 15,
           ),
         ),

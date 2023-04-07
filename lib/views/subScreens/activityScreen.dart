@@ -38,69 +38,67 @@ class _ActivityScreenState extends State<ActivityScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: DefaultTabController(
-        length: 2,
-        initialIndex: 0,
-        child: Scaffold(
-          backgroundColor: AppColor.tertiaryColor,
-          appBar: widget.backButton ?
-          titleAppBarWithBackButton(
-            title: 'Activity History',
-            subTitle: '',
-            context: context,
-            tabBars: const TabBar(
-              indicatorSize: TabBarIndicatorSize.label,
-              indicatorColor: AppColor.tertiaryColor,
-              isScrollable: true,
-              tabs: [
-                Tab(
-                  child: Text(
-                    "Completed",
-                    style: TextStyle(color: AppColor.tertiaryColor),
-                  ),
+    return DefaultTabController(
+      length: 2,
+      initialIndex: 0,
+      child: Scaffold(
+        backgroundColor: AppColor.tertiaryColor,
+        appBar: widget.backButton ?
+        titleAppBarWithBackButton(
+          title: 'Activity History',
+          subTitle: '',
+          context: context,
+          tabBars: const TabBar(
+            indicatorSize: TabBarIndicatorSize.label,
+            indicatorColor: AppColor.tertiaryColor,
+            isScrollable: true,
+            tabs: [
+              Tab(
+                child: Text(
+                  "Completed",
+                  style: TextStyle(color: AppColor.tertiaryColor),
                 ),
-                Tab(
-                  child: Text(
-                    "Pending",
-                    style: TextStyle(color: AppColor.tertiaryColor),
-                  ),
+              ),
+              Tab(
+                child: Text(
+                  "Pending",
+                  style: TextStyle(color: AppColor.tertiaryColor),
                 ),
-              ],
-            ),
-          ) :
-          titleAppBar(
-            context: context,
-            tabBars: const TabBar(
-              indicatorSize: TabBarIndicatorSize.label,
-              indicatorColor: AppColor.tertiaryColor,
-              isScrollable: true,
-              tabs: [
-                Tab(
-                  child: Text(
-                    "Completed",
-                    style: TextStyle(color: AppColor.tertiaryColor),
-                  ),
-                ),
-                Tab(
-                  child: Text(
-                    "Pending",
-                    style: TextStyle(color: AppColor.tertiaryColor),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          body: TabBarView(
-            children: [
-              ///RETURNS ALL TASKS
-              completedTasks(),
-
-              ///RETURNS MY TASKS - ACCEPTED BY THE CURRENT USER
-              pendingTasks()
+              ),
             ],
           ),
+        ) :
+        titleAppBar(
+          context: context,
+          tabBars: const TabBar(
+            indicatorSize: TabBarIndicatorSize.label,
+            indicatorColor: AppColor.tertiaryColor,
+            isScrollable: true,
+            tabs: [
+              Tab(
+                child: Text(
+                  "Completed",
+                  style: TextStyle(color: AppColor.tertiaryColor),
+                ),
+              ),
+              Tab(
+                child: Text(
+                  "Pending",
+                  style: TextStyle(color: AppColor.tertiaryColor),
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        body: TabBarView(
+          children: [
+            ///RETURNS ALL TASKS
+            completedTasks(),
+
+            ///RETURNS MY TASKS - ACCEPTED BY THE CURRENT USER
+            pendingTasks()
+          ],
         ),
       ),
     );

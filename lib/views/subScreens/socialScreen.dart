@@ -3,23 +3,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_expanded_tile/flutter_expanded_tile.dart';
-import 'package:intl/intl.dart';
-import 'package:slider_button/slider_button.dart';
 import 'package:task_masters/const/appColors.dart';
 import 'package:task_masters/const/screen_size.dart';
 import 'package:task_masters/controllers/authController.dart';
-import 'package:task_masters/controllers/taskController.dart';
-import 'package:task_masters/models/spaces.dart';
-import 'package:task_masters/models/tasks.dart';
 import 'package:task_masters/views/subScreens/socialComponents/addFriends.dart';
-import 'package:task_masters/views/subScreens/spacesComponents/createSpace.dart';
-import 'package:task_masters/views/subScreens/spacesComponents/tasks/createTasks.dart';
-import 'package:task_masters/views/subScreens/spacesComponents/tasks/selectAndAddMembers.dart';
 import 'package:task_masters/widgets/appBars.dart';
 import 'package:get/get.dart';
-import 'package:task_masters/widgets/appDialogs.dart';
 import 'package:task_masters/widgets/shimmer.dart';
-
 import '../../../../models/userModel.dart';
 
 class SocialScreen extends StatefulWidget {

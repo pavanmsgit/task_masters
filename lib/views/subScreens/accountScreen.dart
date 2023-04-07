@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:task_masters/const/appColors.dart';
 import 'package:task_masters/const/screen_size.dart';
 import 'package:task_masters/controllers/authController.dart';
 import 'package:task_masters/controllers/launch_controller.dart';
-import 'package:task_masters/views/authScreens/loginScreen.dart';
 import 'package:task_masters/views/subScreens/accountsComponents/pointsHistory.dart';
 import 'package:task_masters/views/subScreens/activityScreen.dart';
 import 'package:task_masters/widgets/appBars.dart';
@@ -22,11 +17,10 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: titleAppBar(context: context),
-        backgroundColor: AppColor.tertiaryColor,
-        body: GetBuilder(
+    return Scaffold(
+      appBar: titleAppBar(context: context),
+      backgroundColor: AppColor.tertiaryColor,
+      body: GetBuilder(
           init: AuthController(),
           builder: (_) => SingleChildScrollView(
             child: Column(
@@ -68,29 +62,29 @@ class AccountScreen extends StatelessWidget {
 
                 ///USER DETAILS
                 Card(
-                  elevation: 0.0,
-                  color: AppColor.tertiaryColor,
-                  child: ListTile(
-                    title: Text(
-                      authController.profile!.name!,
-                      style: const TextStyle(
-                        fontSize: 15,
-                          color: AppColor.white
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    subtitle: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                       "Email : ${authController.profile!.email!}",
-                        maxLines: 2,
-                        textAlign: TextAlign.center,
+                    elevation: 0.0,
+                    color: AppColor.tertiaryColor,
+                    child: ListTile(
+                      title: Text(
+                        authController.profile!.name!,
                         style: const TextStyle(
-                          fontSize: 15, color: AppColor.white
+                            fontSize: 15,
+                            color: AppColor.white
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      subtitle: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Email : ${authController.profile!.email!}",
+                          maxLines: 2,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontSize: 15, color: AppColor.white
+                          ),
                         ),
                       ),
-                    ),
-                  )
+                    )
                 ),
 
 
@@ -107,20 +101,20 @@ class AccountScreen extends StatelessWidget {
                       ),
                     ),
                     color: AppColor.primaryColor,
-                      elevation: 1.0,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "  POINTS : ${authController.profile!.points!}  ",
-                          maxLines: 2,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 15,
-                            color: AppColor.white,
+                    elevation: 1.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "  POINTS : ${authController.profile!.points!}  ",
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          color: AppColor.black,
 
-                          ),
                         ),
                       ),
+                    ),
                   ),
                 ),
 
@@ -190,7 +184,6 @@ class AccountScreen extends StatelessWidget {
               ],
             ),
           )
-        ),
       ),
     );
   }

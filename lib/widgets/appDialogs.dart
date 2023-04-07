@@ -14,6 +14,7 @@ yesNoDialog({required BuildContext context,String? text,required void Function()
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
+        backgroundColor: AppColor.primaryColor,
         insetPadding: const EdgeInsets.symmetric(horizontal: 20),
         contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
         content: Builder(
@@ -45,7 +46,7 @@ yesNoDialog({required BuildContext context,String? text,required void Function()
                             width: ScreenSize.width(context) * 0.28,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(22),
-                              color: AppColor.primaryColor,
+                              color: AppColor.tertiaryColor,
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black.withOpacity(0.3),
@@ -75,7 +76,7 @@ yesNoDialog({required BuildContext context,String? text,required void Function()
                             // width: width(context) * 0.32,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(22),
-                              color: AppColor.primaryColor,
+                              color: AppColor.tertiaryColor,
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black.withOpacity(0.3),

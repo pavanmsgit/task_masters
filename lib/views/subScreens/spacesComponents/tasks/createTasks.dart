@@ -128,7 +128,7 @@ class _CreateTasksState extends State<CreateTasks> {
                                );
                                taskController.updateSelectedStartTimeString();
                              },
-                             child: const Text("Select Start Time"),
+                             child: const Text("Select Start Time",style: TextStyle(color: AppColor.tertiaryColor)),
                            ) :
                            Column(
                              mainAxisAlignment: MainAxisAlignment.center,
@@ -184,7 +184,7 @@ class _CreateTasksState extends State<CreateTasks> {
                                    );
                                    taskController.updateSelectedStartTimeString();
                                  },
-                                 child: const Text("Update Task Time"),
+                                 child: const Text("Update Task Time",style: TextStyle(color: AppColor.tertiaryColor)),
                                )
                              ],
                            ),),
@@ -231,7 +231,7 @@ class _CreateTasksState extends State<CreateTasks> {
                                 );
                                 taskController.updateSelectedEndTimeString();
                               },
-                              child: const Text("Select End Time"),
+                              child: const Text("Select End Time",style: TextStyle(color: AppColor.tertiaryColor)),
                             ) :
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -287,7 +287,7 @@ class _CreateTasksState extends State<CreateTasks> {
                                     );
                                     taskController.updateSelectedEndTimeString();
                                   },
-                                  child: const Text("Update End Time"),
+                                  child: const Text("Update End Time",style: TextStyle(color: AppColor.tertiaryColor),),
                                 )
                               ],
                             ),),
@@ -299,6 +299,7 @@ class _CreateTasksState extends State<CreateTasks> {
                       ///CREATE TASK BUTTON
                       TaskMastersButton(
                         buttonText: "Create",
+
                         onTap: () => taskController.createTask(spaceDocId: widget.spaceDocId),
                       ),
                     ],

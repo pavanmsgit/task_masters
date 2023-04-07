@@ -134,7 +134,7 @@ class _ListItemViewUsersState extends State<ListItemViewUsers> {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Card(
-          color: AppColor.white.withOpacity(0.4),
+          color: AppColor.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
           ),
@@ -151,7 +151,7 @@ class _ListItemViewUsersState extends State<ListItemViewUsers> {
                   leading: spaces.spaceImage.isEmpty
                       ? Container(
                           decoration: BoxDecoration(
-                            color: AppColor.white.withOpacity(0.4),
+                            color: AppColor.black.withOpacity(0.4),
                             borderRadius: BorderRadius.circular(60.0),
                           ),
                           child: Padding(
@@ -161,14 +161,14 @@ class _ListItemViewUsersState extends State<ListItemViewUsers> {
                               child: Icon(
                                 Icons.people,
                                 size: 35.0,
-                                color: AppColor.white.withOpacity(0.4),
+                                color: AppColor.black.withOpacity(0.4),
                               ),
                             ),
                           ),
                         )
                       : Container(
                           decoration: BoxDecoration(
-                            color: AppColor.white.withOpacity(0.4),
+                            color: AppColor.black.withOpacity(0.4),
                             borderRadius: BorderRadius.circular(60.0),
                           ),
                           width: ScreenSize.height(context) * 0.075,
@@ -191,7 +191,7 @@ class _ListItemViewUsersState extends State<ListItemViewUsers> {
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: AppColor.white
+                        color: AppColor.black
                       ),
                     ),
                   ),
@@ -206,14 +206,14 @@ class _ListItemViewUsersState extends State<ListItemViewUsers> {
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
-                          color: AppColor.white
+                          color: AppColor.black
 
                       ),
                     ),
                   ),
                   trailing: Container(
                     decoration: BoxDecoration(
-                      color: AppColor.white.withOpacity(0.4),
+                      color: AppColor.black.withOpacity(0.4),
                       borderRadius: BorderRadius.circular(60.0),
                     ),
                     width: ScreenSize.height(context) * 0.05,

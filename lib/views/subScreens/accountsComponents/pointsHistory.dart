@@ -161,7 +161,7 @@ class _ListItemViewTasksState extends State<ListItemViewTasks> {
             SizedBox(
               width: ScreenSize.width(context) * 0.75,
               child: Card(
-                color: AppColor.white.withOpacity(0.4),
+                color: AppColor.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
                 ),

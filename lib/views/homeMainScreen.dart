@@ -44,9 +44,7 @@ class _HomeScreenMainState extends State<HomeScreenMain> {
           backgroundColor: AppColor.tertiaryColor,
 
           body: Obx(
-                () => SafeArea(
-              child: hc.screens.elementAt(hc.selectedTab.value),
-            ),
+                () => hc.screens.elementAt(hc.selectedTab.value),
           ),
 
           bottomNavigationBar: const AppBottomNav(),
