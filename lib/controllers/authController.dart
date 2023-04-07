@@ -37,6 +37,8 @@ class AuthController extends GetxController {
       phoneNode = FocusNode(),
       pointsNode = FocusNode();
 
+  RxString currentUserEmail = "".obs;
+
   final GlobalKey<FormState> registerKey = GlobalKey<FormState>(),
       loginKey = GlobalKey<FormState>(),
       updateProfileKey = GlobalKey<FormState>();
@@ -56,6 +58,7 @@ class AuthController extends GetxController {
   ///GETS USER PROFILE AND UPDATES IT
   getUserProfile() async {
     profile = await authService.getProfile();
+    currentUserEmail.value = profile!.email;
     name.text = profile!.name;
     email.text = profile!.email;
     phone.text = profile!.phone ?? "";
@@ -111,6 +114,11 @@ class AuthController extends GetxController {
           ///CHECKS THE COUNT - RETURNS 1 IF THE USER EXISTS IN THE DB ELSE IF THE USER IS NEW THE RESULT WILL BE 0
           Future<int> checkStatus = authService.checkIfUserIsRegistered(email: res.user!.email!);
 
+          ///SET USER EMAIL TO SHARED PREFERENCES
+          await userData.setUserEmail(email: res.user!.email);
+          currentUserEmail.value = res.user!.email!;
+          update();
+
           ///RETRIEVING INT FROM FUTURE<INT>
           checkStatus.then((value) async {
             ///CHECKS THE COUNT - RETURNS 1 IF THE USER EXISTS IN THE DB ELSE IF THE USER IS NEW THE RESULT WILL BE 0
@@ -125,12 +133,9 @@ class AuthController extends GetxController {
               ///ADDS LATEST TOKEN TO DB
               await authService.registerTokenToDB(email: res.user!.email!);
             }
-
-
           });
 
-          ///SET USER EMAIL TO SHARED PREFERENCES
-          await userData.setUserEmail(email: res.user!.email);
+
 
           ///CLEARS ALL THE ROOT AND NAVIGATES TO THE HOME SCREEN
           Get.offAll(

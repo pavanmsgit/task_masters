@@ -6,6 +6,7 @@ import 'package:task_masters/const/appColors.dart';
 import 'package:task_masters/const/screen_size.dart';
 import 'package:task_masters/controllers/authController.dart';
 import 'package:task_masters/models/spaces.dart';
+import 'package:task_masters/preferences/userDataPrefs.dart';
 import 'package:task_masters/views/subScreens/spacesComponents/createSpace.dart';
 import 'package:task_masters/views/subScreens/spacesComponents/tasks/viewTasks.dart';
 import 'package:task_masters/widgets/appBars.dart';
@@ -20,12 +21,20 @@ class SpacesScreen extends StatefulWidget {
 }
 
 class _SpacesScreenState extends State<SpacesScreen> {
+  String user = "";
+  UserData userData = UserData();
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      getUserData();
       authController.getUserProfile();
     });
     super.initState();
+  }
+
+  getUserData() async {
+    user = await userData.getUserEmail();
   }
 
   @override
@@ -33,14 +42,15 @@ class _SpacesScreenState extends State<SpacesScreen> {
     return Scaffold(
       appBar: titleAppBar(context: context),
       backgroundColor: AppColor.tertiaryColor,
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
+
+      body: Obx(() => authController.currentUserEmail.value != ""
+          ?
+      StreamBuilder<QuerySnapshot> (
+        stream:  FirebaseFirestore.instance
             .collection("spaces")
-            .where("spaceUsers", arrayContains: authController.profile!.email)
+            .where("spaceUsers", arrayContains: authController.currentUserEmail.value)
             .limit(100)
             .snapshots(),
-
-
         builder: (context, snapshot) {
           if (snapshot.data?.docs.length == 0) {
             return const NoSpacesErrorPage();
@@ -54,7 +64,7 @@ class _SpacesScreenState extends State<SpacesScreen> {
                 ),
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
+                        (BuildContext context, int index) {
                       QueryDocumentSnapshot? data = snapshot.data?.docs[index];
                       final spaces = Spaces.fromSnapshot(data!);
 
@@ -82,7 +92,57 @@ class _SpacesScreenState extends State<SpacesScreen> {
             ),
           );
         },
-      ),
+      ) :
+      StreamBuilder<QuerySnapshot> (
+        stream:  FirebaseFirestore.instance
+            .collection("spaces")
+            .where("spaceUsers", arrayContains: authController.profile!.email)
+            .limit(100)
+            .snapshots(),
+
+
+        builder: (context, snapshot) {
+          if (snapshot.data?.docs.length == 0) {
+            return const NoSpacesErrorPage();
+          }
+
+          if (snapshot.hasData) {
+            return CustomScrollView(
+              slivers: <Widget>[
+                const SliverPadding(
+                  padding: EdgeInsets.only(top: 10),
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
+                      QueryDocumentSnapshot? data = snapshot.data?.docs[index];
+                      final spaces = Spaces.fromSnapshot(data!);
+
+                      return ListItemViewUsers(
+                          spaces: spaces, spaceDocId: data.id);
+                    },
+                    childCount: snapshot.data?.docs.length,
+                  ),
+                ),
+                const SliverPadding(
+                  padding: EdgeInsets.only(bottom: 40),
+                ),
+              ],
+            );
+          }
+
+          return SingleChildScrollView(
+            child: Column(
+              children: const [
+                SizedBox(
+                  height: 50,
+                ),
+                ShimmerWidget(),
+              ],
+            ),
+          );
+        },
+      ),),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Get.to(() => const CreateSpace());
