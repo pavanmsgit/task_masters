@@ -34,7 +34,7 @@ Widget buildBottomSheet(BuildContext context) {
         height: 24,
       ),
       const Text(
-        'Do you want to exit an App?',
+        'Do you want to exit the App?',
           style: TextStyle(color: AppColor.white,fontSize: 18)
       ),
       const SizedBox(

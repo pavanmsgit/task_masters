@@ -145,7 +145,7 @@ class TaskController extends GetxController {
       if (res) {
         showToast('Task Updated', ToastGravity.BOTTOM);
         clearAllTasksFields();
-        //Get.back();
+        Get.back();
       }
     } catch (err) {
       showToast(err.toString(), ToastGravity.BOTTOM);

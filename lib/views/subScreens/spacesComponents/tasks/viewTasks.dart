@@ -137,9 +137,10 @@ class _ViewTasksState extends State<ViewTasks> {
           .collection("spaces")
           .doc(widget.spaceDocId)
           .collection("tasks")
-          .where("taskSelectedTime", isGreaterThanOrEqualTo: DateTime.now())
+          .where("taskSelectedStartTime", isGreaterThanOrEqualTo: DateTime.now())
           .where("status", isEqualTo: 0)
           .snapshots(),
+
       builder: (context, snapshot) {
         if (snapshot.data?.docs.length == 0) {
           return NoTasksErrorPage();
@@ -199,7 +200,7 @@ class _ViewTasksState extends State<ViewTasks> {
           .doc(widget.spaceDocId)
           .collection("tasks")
           .where("acceptedByEmail", isEqualTo: authController.profile!.email)
-          .where("taskSelectedTime", isGreaterThanOrEqualTo: DateTime.now())
+          .where("taskSelectedStartTime", isGreaterThanOrEqualTo: DateTime.now())
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.data?.docs.length == 0) {
@@ -479,6 +480,14 @@ class _ListItemViewTasksState extends State<ListItemViewTasks> {
                 ],
               ),
 
+              tasks.status == 3  ? Center(
+                child: Container(
+                  padding: const EdgeInsets.all(10.0),
+                  child: const AutoSizeText("TASK HAS BEEN DELETED",
+                  style: TextStyle(color: AppColor.red,fontWeight: FontWeight.w400),),
+                ),
+              ) :
+
               ///ACCEPT/DECLINE TASK
               ///CHECKS IF THE TASK POSTED BY THE CURRENT USER - ALLOWS USER TO CANCEL A TASK
               tasks.taskByEmail == authController.profile!.email
@@ -550,7 +559,6 @@ class _ListItemViewTasksState extends State<ListItemViewTasks> {
                     )
                   : tasks.status == 0
                       ?
-
                       ///ACCEPT TASK SLIDER BUTTON
                       Padding(
                           padding: const EdgeInsets.all(15.0),
